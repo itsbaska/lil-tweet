@@ -25,7 +25,7 @@ iterator(){
         <ul>
           {this.state.tweets.map(function(tweet) {
             return (
-              <Tweet content={tweet.content} username={tweet.username} handle={tweet.handle} created_at={tweet.created_at} avatar_url={tweet.avatar_url} />
+              <Tweet key={tweet.id} content={tweet.content} username={tweet.username} handle={tweet.handle} created_at={tweet.created_at} avatar_url={tweet.avatar_url}/>
             )
           })
         }
