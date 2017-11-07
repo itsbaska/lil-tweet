@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import TwitterParent from './TwitterParent.js'
 import SearchBox from'./SearchBox.js';
-
-
 
 class App extends Component {
   render() {
