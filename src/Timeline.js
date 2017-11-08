@@ -7,28 +7,30 @@ class Timeline extends Component {
     super(args);
     this.state = {
       tweets: [],
-    }
-    this.iterator()
+    };
   }
 
-iterator(){
-  var data = require('./TweetData.json');
-  for(var i = 0; i < data.length; i++) {
-      this.state.tweets.push(data[i]);
+
+  componentDidMount() {
+    fetch("http://localhost:9393/tweets/recent")
+    .then(results => {
+      return results.json();
+    }).then(data => {
+      let tweeties = data.map((tweet) => {
+        return(
+          <Tweet {...tweet} key={tweet.id}/>
+        )
+      })
+      this.setState({tweets: tweeties});
+    })
   }
-}
 
   render() {
     return (
       <section id="tweets-container">
         <h3>Tweets</h3>
         <ul>
-          {this.state.tweets.map(function(tweet) {
-            return (
-              <Tweet {...tweet} key={tweet.id} />
-            )
-          })
-        }
+          {this.state.tweets}
         </ul>
       </section>
     );
@@ -36,3 +38,6 @@ iterator(){
 }
 
 export default Timeline;
+
+
+
